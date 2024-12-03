@@ -6,7 +6,7 @@ import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-export class LessonList extends Component {
+export class LessonListProf extends Component {
   constructor(props) {
     super(props);
     this.state = {
