@@ -6,7 +6,7 @@ import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-export class LessonList extends Component {
+export class LessonListProf extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ export class LessonList extends Component {
               <h3 className="cl">{lesson.date}</h3>
             </div>
             <div className="col-md-2">
-              <LessonButton status={lesson.status} />
+              <LessonButton status="PROF" />
             </div>
           </div>
         ))}
