@@ -30,7 +30,7 @@ const CoursePage = () => {
             color: paletteColors.navy,
           }}
           // Navigate to Course List
-          onClick={() => navigate("/course-list")}
+          onClick={() => navigate("/")}
         >
           <i className="bi bi-arrow-left"></i>
         </button>
