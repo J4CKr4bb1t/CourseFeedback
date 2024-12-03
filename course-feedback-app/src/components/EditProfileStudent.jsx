@@ -3,14 +3,17 @@ import { useForm } from "react-hook-form";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../App.css";
 import { paletteColors } from "./palette";
+import { useNavigate } from "react-router-dom"; 
 
-const EditProfile = () => {
+const EditProfileStudent = () => {
+  const navigate = useNavigate(); 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm();
 
+  
   const onSubmit = async (data) => {
     console.log("Form Data:", data);
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -34,10 +37,12 @@ const EditProfile = () => {
           style={{
             border: "none",
             background: "none",
-            fontSize: "1.5rem",
+            fontSize: "2rem",
             cursor: "pointer",
             color:  paletteColors.navy,
           }}
+           // Navigate to Course List
+           onClick={() => navigate("/course-list")} 
         >
           <i className="bi bi-arrow-left"></i>
         </button>
@@ -57,6 +62,8 @@ const EditProfile = () => {
               cursor: "pointer",
               fontSize: "1.2rem",
             }}
+            // Navigate to Login Form
+            onClick={() => navigate("/")} 
           >
             <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
           </button>
@@ -72,6 +79,8 @@ const EditProfile = () => {
               alignItems: "center",
               cursor: "pointer",
             }}
+             // Navigate to Edit Profile
+             onClick={() => navigate("/edit-profile-student")} 
           >
             <i className="bi bi-person-fill" style={{ color:  paletteColors.navy }}></i> {/* Profile Icon */}
           </button>
@@ -224,4 +233,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditProfileStudent;

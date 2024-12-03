@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; 
 import { useForm } from "react-hook-form";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../App.css";
 import { paletteColors } from "./palette";
 
-const EditProfile = () => {
+const EditProfileProf = () => {
+  const navigate = useNavigate(); 
   const {
     register,
     handleSubmit,
@@ -34,29 +36,33 @@ const EditProfile = () => {
           style={{
             border: "none",
             background: "none",
-            fontSize: "1.5rem",
+            fontSize: "2rem", 
             cursor: "pointer",
-            color:  paletteColors.navy,
+            color: paletteColors.navy,
           }}
+          // Navigate to Course List
+          onClick={() => navigate("/course-list")} 
         >
           <i className="bi bi-arrow-left"></i>
         </button>
 
         {/* Title */}
-        <h1 style={{ margin: 0, color:  paletteColors.navy, fontSize: "1.2rem" }}>
+        <h1 style={{ margin: 0, color: paletteColors.navy, fontSize: "1.5rem" }}>
           Edit Profile
         </h1>
 
         {/* Logout and Profile Icons */}
-        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
           <button
             style={{
               border: "none",
               background: "none",
-              color:  paletteColors.navy,
+              color: paletteColors.navy,
               cursor: "pointer",
-              fontSize: "1.2rem",
+              fontSize: "1.5rem", 
             }}
+            // Navigate to Login Form
+            onClick={() => navigate("/")} 
           >
             <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
           </button>
@@ -65,15 +71,17 @@ const EditProfile = () => {
               border: "none",
               background: "#FFCC5C",
               borderRadius: "50%",
-              width: "35px",
-              height: "35px",
+              width: "40px", 
+              height: "40px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               cursor: "pointer",
             }}
+            // Navigate to Edit Profile
+            onClick={() => navigate("/edit-profile-prof")} 
           >
-            <i className="bi bi-person-fill" style={{ color:  paletteColors.navy }}></i> {/* Profile Icon */}
+            <i className="bi bi-person-fill" style={{ color: paletteColors.navy }}></i>
           </button>
         </div>
       </header>
@@ -101,10 +109,10 @@ const EditProfile = () => {
               color: "#333333",
             }}
           >
-           Department
+            Department
           </label>
           <input
-            {...register("department", { required: "department is required" })}
+            {...register("department", { required: "Department is required" })}
             type="text"
             id="department"
             placeholder="Mathematics"
@@ -123,47 +131,44 @@ const EditProfile = () => {
           )}
         </div>
 
-        
-      {/* Biography Input */}
-<div>
-  <label
-    htmlFor="biography"
-    style={{
-      display: "block",
-      marginBottom: "5px",
-      fontWeight: "bold",
-      color: "#333333",
-    }}
-  >
-    Biography
-  </label>
-  <textarea
-    {...register("biography", {
-      required: "Biography is required",
-      minLength: {
-        value: 10,
-        message: "Biography must be at least 10 characters long",
-      },
-    })}
-    id="biography"
-    placeholder="Lorem ipsum odor amet, consectetuer adipiscing elit. Bibendum dictum augue integer sodales quam ultrices nec et viverra. Habitasse integer volutpat mattis ad vel enim sagittis dolor. Accumsan gravida et ad convallis fringilla morbi. Adipiscing elit semper ex volutpat senectus taciti sociosqu consequat. Volutpat quis accumsan et vestibulum fames risus sagittis."
-    style={{
-      width: "100%",
-      padding: "15px",
-      border: "1px solid #6AB1E2",
-      borderRadius: "10px",
-      fontSize: "1rem",
-      minHeight: "fit-content",
-      resize: "vertical", 
-    }}
-  ></textarea>
-  {errors.biography && (
-    <span style={{ color: "red", fontSize: "0.9rem" }}>
-      {errors.biography.message}
-    </span>
-  )}
-</div>
-
+        {/* Biography Input */}
+        <div>
+          <label
+            htmlFor="biography"
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              fontWeight: "bold",
+              color: "#333333",
+            }}
+          >
+            Biography
+          </label>
+          <textarea
+            {...register("biography", {
+              required: "Biography is required",
+              minLength: {
+                value: 10,
+                message: "Biography must be at least 10 characters long",
+              },
+            })}
+            id="biography"
+            placeholder="Enter your biography"
+            style={{
+              width: "100%",
+              padding: "15px",
+              border: "1px solid #6AB1E2",
+              borderRadius: "10px",
+              fontSize: "1rem",
+              resize: "vertical",
+            }}
+          ></textarea>
+          {errors.biography && (
+            <span style={{ color: "red", fontSize: "0.9rem" }}>
+              {errors.biography.message}
+            </span>
+          )}
+        </div>
 
         {/* Save Button */}
         <button
@@ -173,7 +178,7 @@ const EditProfile = () => {
             width: "100%",
             padding: "15px",
             backgroundColor: "#FFCC5C",
-            olor: paletteColors.mediumBlue,
+            color: paletteColors.mediumBlue,
             fontWeight: "bold",
             fontSize: "1rem",
             border: "none",
@@ -188,4 +193,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditProfileProf;
