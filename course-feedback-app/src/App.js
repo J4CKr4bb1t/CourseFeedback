@@ -13,12 +13,11 @@ function App() {
     <div className="App">
       {/* Render the EditProfile component */}
       <LoginForm />
-    </div>);
-/*<div className="App">
+    </div>
+  );
+  /*<div className="App">
       <LoginForm />
     </div>  );*/
-   
-  );
 }
 
 export default App;
