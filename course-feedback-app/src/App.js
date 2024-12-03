@@ -11,6 +11,7 @@ import { Bargraph2 } from "./components/PaceBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CoursePage from "./components/CoursePage";
 import LessonPage from "./components/LessonPage";
+import LessonPageProf from "./components/LessonPageProf";
 
 function App() {
   return (
@@ -28,8 +29,10 @@ function App() {
         {/* Course Course Page */}
         <Route path="/course-list" element={<CoursePage />} />
 
-        {/* Lesson List Page */}
+        {/* Lesson List Page for STUDENT*/}
         <Route path="/lesson-list" element={<LessonPage />} />
+        {/* Lesson List Page for PROF*/}
+        <Route path="/lesson-list-prof" element={<LessonPageProf />} />
       </Routes>
     </Router>
   );
