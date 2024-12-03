@@ -2,23 +2,25 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import "../App.css";
 import { paletteColors } from "./palette";
+import { useNavigate } from "react-router-dom"; 
+
 
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    setError,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
+  const navigate = useNavigate(); 
 
-  const onSubmit = async (data) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log(data);
-      throw new Error();
-    } catch (error) {
-      setError("root", { message: "Username is taken" });
-    }
+  // Navigate to the student profile page
+  const onSubmitStudent = () => {
+    navigate("/edit-profile-student"); 
+  };
+
+  // Navigate to the professor profile page
+  const onSubmitProfessor = () => {
+    navigate("/edit-profile-prof"); 
   };
 
   return (
@@ -44,7 +46,7 @@ const LoginForm = () => {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          height: "calc(100vh - 60px)", // Subtract header height
+          height: "calc(100vh - 60px)", 
           padding: "0 20px",
         }}
       >
@@ -52,7 +54,7 @@ const LoginForm = () => {
         <div style={{ maxWidth: "400px", margin: "0 auto" }}>
           <h2 style={{ marginBottom: "20px", color: "black" }}>Log in:</h2>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form>
             {/* Email Input */}
             <div style={{ marginBottom: "15px" }}>
               <label
@@ -141,13 +143,14 @@ const LoginForm = () => {
               )}
             </div>
 
-            {/* Login Button */}
+            {/* Login Buttons */}
             <button
-              type="submit"
-              disabled={isSubmitting}
+              type="button"
+              onClick={onSubmitStudent}
               style={{
                 width: "100%",
                 padding: "12px",
+                marginBottom: "10px",
                 backgroundColor: paletteColors.burntGold,
                 color: paletteColors.white,
                 fontSize: "1rem",
@@ -158,21 +161,26 @@ const LoginForm = () => {
                 textTransform: "uppercase",
               }}
             >
-              {isSubmitting ? "Loading..." : "Login"}
+              Login as Student
             </button>
-
-            {/* Root Error Message */}
-            {errors.root && (
-              <div
-                style={{
-                  color: "red",
-                  fontSize: "0.9rem",
-                  marginTop: "10px",
-                }}
-              >
-                {errors.root.message}
-              </div>
-            )}
+            <button
+              type="button"
+              onClick={onSubmitProfessor}
+              style={{
+                width: "100%",
+                padding: "12px",
+                backgroundColor: paletteColors.mediumBlue,
+                color: paletteColors.white,
+                fontSize: "1rem",
+                fontWeight: "bold",
+                border: "none",
+                borderRadius: "20px",
+                cursor: "pointer",
+                textTransform: "uppercase",
+              }}
+            >
+              Login as Professor
+            </button>
           </form>
         </div>
       </div>
