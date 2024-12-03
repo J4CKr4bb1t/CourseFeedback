@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import "../App.css";
 import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
-import { CourseList } from "./CourseList";
+import { LessonList } from "./LessonList";
 
-const CoursePage = () => {
+const LessonPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -39,7 +39,7 @@ const CoursePage = () => {
         <h1
           style={{ margin: 0, color: paletteColors.navy, fontSize: "1.5rem" }}
         >
-          Course List
+          Lesson List
         </h1>
 
         {/* Logout and Profile Icons */}
@@ -80,8 +80,8 @@ const CoursePage = () => {
         </div>
       </header>
       <br></br>
-      <CourseList />
+      <LessonList />
     </div>
   );
 };
-export default CoursePage;
+export default LessonPage;
