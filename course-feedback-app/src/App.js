@@ -9,15 +9,13 @@ import EditProfileProf from "./components/EditProfileProf";
 import { Bargraph1 } from "./components/EasyBar";
 import { Bargraph2 } from "./components/PaceBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import CoursePage from "./components/CoursePage";
+import LessonPage from "./components/LessonPage";
+import LessonPageProf from "./components/LessonPageProf";
 
 function App() {
   return (
-   /* <div className="App">
-    {/* Render the EditProfile component }
-    <CourseList/>
-  </div>); */
-   <Router>
+    <Router>
       <Routes>
         {/* Default Login Page */}
         <Route path="/" element={<LoginForm />} />
@@ -28,14 +26,15 @@ function App() {
         {/* Professor Profile Page */}
         <Route path="/edit-profile-prof" element={<EditProfileProf />} />
 
-        {/* Course List Page */}
-        <Route path="/course-list" element={<CourseList />} />
+        {/* Course Course Page */}
+        <Route path="/course-list" element={<CoursePage />} />
 
-        {/* Lesson List Page */}
-        <Route path="/lesson-list" element={<LessonList />} />
+        {/* Lesson List Page for STUDENT*/}
+        <Route path="/lesson-list" element={<LessonPage />} />
+        {/* Lesson List Page for PROF*/}
+        <Route path="/lesson-list-prof" element={<LessonPageProf />} />
       </Routes>
     </Router>
-      
   );
 }
 
