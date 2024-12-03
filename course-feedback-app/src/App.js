@@ -12,13 +12,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    /*<div className="App">
-      <LoginForm />
-    </div>  );*/
-    /* <div className="App">
-    {/* Render the EditProfile component }
-    <CourseList/>
-  </div>); */
     <Router>
       <Routes>
         {/* Default Login Page */}
