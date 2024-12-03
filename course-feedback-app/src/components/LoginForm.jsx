@@ -2,8 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import "../App.css";
 import { paletteColors } from "./palette";
-import { useNavigate } from "react-router-dom"; 
-
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const {
@@ -11,16 +10,15 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  // Navigate to the student profile page
-  const onSubmitStudent = () => {
-    navigate("/edit-profile-student"); 
-  };
-
-  // Navigate to the professor profile page
-  const onSubmitProfessor = () => {
-    navigate("/edit-profile-prof"); 
+  // Navigate to the respective profile page after login
+  const onSubmit = (data, userType) => {
+    if (userType === "student") {
+      navigate("/edit-profile-student");
+    } else if (userType === "professor") {
+      navigate("/edit-profile-prof");
+    }
   };
 
   return (
@@ -46,7 +44,7 @@ const LoginForm = () => {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          height: "calc(100vh - 60px)", 
+          height: "calc(100vh - 60px)",
           padding: "0 20px",
         }}
       >
@@ -146,7 +144,7 @@ const LoginForm = () => {
             {/* Login Buttons */}
             <button
               type="button"
-              onClick={onSubmitStudent}
+              onClick={handleSubmit((data) => onSubmit(data, "student"))}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -165,7 +163,7 @@ const LoginForm = () => {
             </button>
             <button
               type="button"
-              onClick={onSubmitProfessor}
+              onClick={handleSubmit((data) => onSubmit(data, "professor"))}
               style={{
                 width: "100%",
                 padding: "12px",

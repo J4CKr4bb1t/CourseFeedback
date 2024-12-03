@@ -13,23 +13,30 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-    {/* Render the EditProfile component */}
+   /* <div className="App">
+    {/* Render the EditProfile component }
     <CourseList/>
-  </div>);
-    /*<Router>
+  </div>); */
+   <Router>
       <Routes>
-        {/* Default Login Page }
+        {/* Default Login Page */}
         <Route path="/" element={<LoginForm />} />
 
-        {/* Student Profile Page }
+        {/* Student Profile Page */}
         <Route path="/edit-profile-student" element={<EditProfileStudent />} />
 
-        {/* Professor Profile Page }
+        {/* Professor Profile Page */}
         <Route path="/edit-profile-prof" element={<EditProfileProf />} />
+
+        {/* Course List Page */}
+        <Route path="/course-list" element={<CourseList />} />
+
+        {/* Lesson List Page */}
+        <Route path="/lesson-list" element={<LessonList />} />
       </Routes>
-    </Router> */
-  
+    </Router>
+      
+  );
 }
 
 export default App;
