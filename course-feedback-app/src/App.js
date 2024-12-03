@@ -6,6 +6,8 @@ import { LessonList } from "./components/LessonList";
 import LoginForm from "./components//LoginForm";
 import EditProfileStudent from "./components/EditProfileStudent";
 import EditProfileProf from "./components/EditProfileProf";
+import { Bargraph1 } from "./components/EasyBar";
+import { Bargraph2 } from "./components/PaceBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
