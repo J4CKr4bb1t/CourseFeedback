@@ -30,16 +30,16 @@ const CoursePageProf = () => {
             color: paletteColors.navy,
           }}
           // Navigate to Course List
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/course-list-prof")}
         >
-          <i className="bi bi-arrow-left"></i>
+          <i className="bi bi-house"></i>
         </button>
 
         {/* Title */}
         <h1
           style={{ margin: 0, color: paletteColors.navy, fontSize: "1.5rem" }}
         >
-          Course List
+          Course List 
         </h1>
 
         {/* Logout and Profile Icons */}
