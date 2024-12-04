@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { getCourse, getCourses } from "../services/CourseService";
 import FeedbackButton from "./FeedbackButton";
+import { paletteColors } from "./palette";
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 export class CourseList extends Component {
   constructor(props) {
