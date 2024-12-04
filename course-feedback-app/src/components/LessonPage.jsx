@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { LessonList } from "./LessonList";
 
 const LessonPage = () => {
-  const navigate = useNavigate();
+ const navigate = useNavigate();
 
   return (
     <div className="w100">
@@ -30,7 +30,7 @@ const LessonPage = () => {
             color: paletteColors.navy,
           }}
           // Navigate to Course List
-          onClick={() => navigate("/course-list")}
+         onClick={() => navigate("/course-list")}
         >
           <i className="bi bi-arrow-left"></i>
         </button>
@@ -70,7 +70,7 @@ const LessonPage = () => {
               cursor: "pointer",
             }}
             // Navigate to Edit Profile
-            onClick={() => navigate("/edit-profile-prof")}
+            onClick={() => navigate("/edit-profile-student")}
           >
             <i
               className="bi bi-person-fill"

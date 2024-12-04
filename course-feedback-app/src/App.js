@@ -15,6 +15,8 @@ import CoursePage from "./components/CoursePage";
 import LessonPage from "./components/LessonPage";
 import LessonPageProf from "./components/LessonPageProf";
 
+
+
 function App() {
   return (
     <Router>
@@ -22,30 +24,37 @@ function App() {
         {/* Default Login Page */}
         <Route path="/" element={<LoginForm />} />
 
-        {/* Student Profile Page */}
+        {/* Student Profile Page*/ }
         <Route path="/edit-profile-student" element={<EditProfileStudent />} />
 
         {/* Professor Profile Page */}
         <Route path="/edit-profile-prof" element={<EditProfileProf />} />
 
-        {/* Course Course Page */}
+        {/* Course Course Page for Student */ }
         <Route path="/course-list" element={<CoursePage />} />
 
-        {/* Lesson List Page */}
-        <Route path="/lesson-list" element={<LessonList />} />
+         {/* Course lesson Page for Student */ }
+        <Route path="/lessons" element={<LessonPage />} />
 
-        <Route path="/lessons" element={<LessonList />} />
+         {/* Course feedback Page for Student */ }
         <Route path="/feedback" element={<TeacherFeedbackPage />} />
         <Route path="/feedback/:lessonId" element={<FeedbackPage />} />
          
-        {/* Lesson List Page for PROF*/}
+
+          {/* Course Course Page for Prof */ }
+        <Route path="/course-list-prof" element={<CoursePage />} />
+        {/* Lesson List Page for PROF */}
         <Route path="/lesson-list-prof" element={<LessonPageProf />} />
+
+           {/* Course feedback Page for Prof */ }
    
+
         
       </Routes>
     </Router>
   );
 }
+
 
 
 export default App;
