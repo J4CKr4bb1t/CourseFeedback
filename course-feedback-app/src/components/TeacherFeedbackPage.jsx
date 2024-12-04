@@ -7,6 +7,7 @@ import { paletteColors } from "./palette";
 
 const TeacherFeedbackPage = () => {
    const navigate = useNavigate(); 
+
   return (
     <div className="feedback-page" style={{ backgroundColor: "#F5F5F5", height: "100vh" }}>
       {/* Header */}
@@ -94,7 +95,7 @@ const TeacherFeedbackPage = () => {
           <h2>3. Do you have any suggestions to improve the lesson?</h2>
           <p className="student-name">STUDENT A</p>
           <textarea
-            placeholder="Enter text here..."
+            placeholder="I would like if the course moved a little quicker"
             className="feedback-input"
           ></textarea>
         </div>

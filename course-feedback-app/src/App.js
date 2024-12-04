@@ -14,6 +14,7 @@ import TeacherFeedbackPage from "./components/TeacherFeedbackPage";
 import CoursePage from "./components/CoursePage";
 import LessonPage from "./components/LessonPage";
 import LessonPageProf from "./components/LessonPageProf";
+import CoursePageProf from "./components/CoursePageProf";
 
 
 
@@ -42,12 +43,12 @@ function App() {
          
 
           {/* Course Course Page for Prof */ }
-        <Route path="/course-list-prof" element={<CoursePage />} />
+        <Route path="/course-list-prof" element={<CoursePageProf />} />
         {/* Lesson List Page for PROF */}
         <Route path="/lesson-list-prof" element={<LessonPageProf />} />
-
+        
            {/* Course feedback Page for Prof */ }
-   
+           <Route path="/teacher-feedback/:lessonId" element={<TeacherFeedbackPage />} />
 
         
       </Routes>

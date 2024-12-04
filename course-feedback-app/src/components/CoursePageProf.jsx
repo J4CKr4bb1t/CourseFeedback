@@ -8,6 +8,10 @@ import { CourseListProf } from "./CourseListProf";
 const CoursePageProf = () => {
   const navigate = useNavigate();
 
+const handleViewLessons = () => {
+   navigate("/lesson-list-prof");
+};
+
   return (
     <div className="w100">
       {/* Header */}
@@ -78,6 +82,7 @@ const CoursePageProf = () => {
             ></i>
           </button>
         </div>
+        
       </header>
       <br></br>
       <CourseListProf />

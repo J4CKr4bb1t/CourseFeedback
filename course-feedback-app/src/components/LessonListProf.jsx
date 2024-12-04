@@ -1,10 +1,30 @@
 import React, { Component } from "react";
-import { getCourse, getCourses, getLessons } from "../services/CourseService";
-import FeedbackButton from "./FeedbackButton";
-import LessonButton from "./LessonBtn";
-import { paletteColors } from "./palette";
+import { getLessons } from "../services/CourseService";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+
+const ViewFeedbackButton = ({ lessonId }) => {
+  const navigate = useNavigate();
+
+  const handleViewFeedback = () => {
+    navigate(`/teacher-feedback/${lessonId}`);
+  };
+
+  return (
+    <button onClick={handleViewFeedback} className="btn btn-primary" style={{
+      backgroundColor: "#FFB81C", 
+      border: "none",
+      color: "black",
+      padding: "15px 20px",
+      fontSize: "1.2rem",
+      borderRadius: "25px",
+      cursor: "pointer",
+      textAlign: "center",
+    }}>
+      View Feedback
+    </button>
+  );
+};
 
 export class LessonListProf extends Component {
   constructor(props) {
@@ -18,7 +38,7 @@ export class LessonListProf extends Component {
     return (
       <div className="list-box">
         {this.state.lessons.map((lesson, index) => (
-          <div className="row course-row">
+          <div className="row course-row" key={lesson.id}>
             <div className="col-md-2">
               <h1 className="cl">Lesson {index + 1}</h1>
             </div>
@@ -29,7 +49,7 @@ export class LessonListProf extends Component {
               <h3 className="cl">{lesson.date}</h3>
             </div>
             <div className="col-md-2">
-              <LessonButton status="PROF" />
+              <ViewFeedbackButton lessonId={lesson.id} />
             </div>
           </div>
         ))}
