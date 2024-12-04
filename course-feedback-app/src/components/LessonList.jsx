@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { getLessons } from "../services/CourseService";
 import LessonButton from "./LessonBtn";
-import NavBar from "./NavBar";
+import { paletteColors } from "./palette";
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 export class LessonList extends Component {
   constructor(props) {

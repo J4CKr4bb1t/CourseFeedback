@@ -35,6 +35,14 @@ const LessonButton = ({ status, lessonId, feedback }) => {
       );
       break;
 
+    case "PROF":
+      return (
+        <button type="button" className={"available " + " btn lesson-btn"}>
+          <h3 className="btn-txt b1 "> VIEW FEEDBACK</h3>
+        </button>
+      );
+      break;
+
     case "unavailable":
       return (
         <button type="button" className="btn-unavailable-btn"
