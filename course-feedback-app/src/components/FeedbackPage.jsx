@@ -106,7 +106,7 @@ const FeedbackPage = () => {
       <form onSubmit={handleSubmit} className="feedback-form">
         <div className="feedback-question">
           <h3>Q1: Was the lesson content clear and easy to understand?</h3>
-          <div className="feedback-options">
+          <div className="feedback-options blue-box">
             {[" Very unclear", " A little unclear", " Neutral", " A little clear", " Very clear"].map((option, index) => (
               <label key={index} className="feedback-option">
                 <input
@@ -123,7 +123,7 @@ const FeedbackPage = () => {
         </div>
         <div className="feedback-question">
           <h3>Q2: Was the pace of the lesson appropriate for your understanding?</h3>
-          <div className="feedback-options">
+          <div className="feedback-options blue-box">
             {[" Too Slow", " Just Right", " Too Fast"].map((option, index) => (
               <label key={index} className="feedback-option">
                 <input
