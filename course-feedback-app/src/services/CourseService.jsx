@@ -31,6 +31,11 @@ const lessons = [
     name: "Understanding the basics",
     date: "Nov 10th 2024",
     status: "complete",
+    feedback: {
+      contentClarity: "Very clear",
+      pace: "Just right",
+      suggestions: "Great start!",
+    },
   },
 
   {
@@ -38,6 +43,11 @@ const lessons = [
     name: "Introductions",
     date: "Nov 12th 2024",
     status: "complete",
+    feedback: {
+      contentClarity: "A little unclear",
+      pace: "Too slow",
+      suggestions: "Could use more examples.",
+    },
   },
 
   {
@@ -45,6 +55,11 @@ const lessons = [
     name: "Identifying Pattners",
     date: "Nov 14th 2024",
     status: "complete",
+    feedback: {
+      contentClarity: "Very Clear",
+      pace: "Just right",
+      suggestions: "Add more visuals.",
+    },
   },
 
   {
@@ -52,6 +67,7 @@ const lessons = [
     name: "Quiz 1 review session",
     date: "Nov 16th 2024",
     status: "available",
+    feedback: null,
   },
 
   {
@@ -59,6 +75,7 @@ const lessons = [
     name: "Quiz 1",
     date: "Nov 18th 2024",
     status: "unavailable",
+    feedback: null,
   },
 ];
 
