@@ -11,21 +11,12 @@ import { Bargraph1 } from "./components/EasyBar";
 import { Bargraph2 } from "./components/PaceBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TeacherFeedbackPage from "./components/TeacherFeedbackPage";
+import CoursePage from "./components/CoursePage";
+import LessonPage from "./components/LessonPage";
+import LessonPageProf from "./components/LessonPageProf";
 
- /*
- function App() { 
-  return ( 
-    <div> <TeacherFeedbackPage /> </div> 
-    );
-   } 
-   */
-  
 function App() {
   return (
-    /* <div className="App"> 
-    {/* Render the EditProfile component } 
-    <CourseList/> </div>); */
-
     <Router>
       <Routes>
         {/* Default Login Page */}
@@ -37,8 +28,8 @@ function App() {
         {/* Professor Profile Page */}
         <Route path="/edit-profile-prof" element={<EditProfileProf />} />
 
-        {/* Course List Page */}
-        <Route path="/course-list" element={<CourseList />} />
+        {/* Course Course Page */}
+        <Route path="/course-list" element={<CoursePage />} />
 
         {/* Lesson List Page */}
         <Route path="/lesson-list" element={<LessonList />} />
@@ -46,9 +37,13 @@ function App() {
         <Route path="/lessons" element={<LessonList />} />
         <Route path="/feedback" element={<TeacherFeedbackPage />} />
         <Route path="/feedback/:lessonId" element={<FeedbackPage />} />
+         
+        {/* Lesson List Page for PROF*/}
+        <Route path="/lesson-list-prof" element={<LessonPageProf />} />
+   
+        
       </Routes>
     </Router>
-
   );
 }
 
