@@ -24,9 +24,7 @@ export class CourseListProf extends Component {
             <div className="col-md-4">
               <h3 className="cl">{course.name}</h3>
             </div>
-            <div className="col-md-4">
-              <h3 className="cl">{course.prof}</h3>
-            </div>
+            <div className="col-md-4"></div>
             <div className="col-md-2">
               <FeedbackButtonProf />
             </div>
