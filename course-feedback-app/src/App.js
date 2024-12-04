@@ -12,14 +12,14 @@ import { Bargraph2 } from "./components/PaceBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TeacherFeedbackPage from "./components/TeacherFeedbackPage";
 
-/* 
+ /*
  function App() { 
   return ( 
     <div> <TeacherFeedbackPage /> </div> 
     );
    } 
-*/ 
-
+   */
+  
 function App() {
   return (
     /* <div className="App"> 
@@ -51,5 +51,6 @@ function App() {
 
   );
 }
+
 
 export default App;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getLessons } from "../services/CourseService";
 import LessonButton from "./LessonBtn";
+import NavBar from "./NavBar";
 
 export class LessonList extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ export class LessonList extends Component {
   render() {
     return (
       <div className="list-box">
+        <NavBar title="Lessons" />
+
         {this.state.lessons.map((lesson, index) => (
           <div className="row course-row" key={lesson.id}>
             <div className="col-md-2">

@@ -1,14 +1,12 @@
 import React from "react";
 import { Bargraph1 } from "./EasyBar";
 import { Bargraph2 } from "./PaceBar";
-import LoginNavBar from "./NavBar";
+import NavBar from "./NavBar";
 import "./TeacherFeedbackPage.css"; 
 
 const TeacherFeedbackPage = () => {
   return (
     <div className="feedback-page">
-      <LoginNavBar title="BIO 101 Lesson 4 Feedback" />
-
       <div className="content">
         <div className="question">
           <h2>1. Was the content easy to understand?</h2>
