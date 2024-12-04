@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { getCourse, getCourses, getLessons } from "../services/CourseService";
-import FeedbackButton from "./FeedbackButton";
+import { getLessons } from "../services/CourseService";
 import LessonButton from "./LessonBtn";
 import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +17,7 @@ export class LessonList extends Component {
     return (
       <div className="list-box">
         {this.state.lessons.map((lesson, index) => (
-          <div className="row course-row">
+          <div className="row course-row" key={lesson.id}>
             <div className="col-md-2">
               <h1 className="cl">Lesson {index + 1}</h1>
             </div>
@@ -29,7 +28,11 @@ export class LessonList extends Component {
               <h3 className="cl">{lesson.date}</h3>
             </div>
             <div className="col-md-2">
-              <LessonButton status={lesson.status} />
+              <LessonButton
+                status={lesson.status}
+                lessonId={lesson.id}
+                feedback={lesson.feedback}
+              />
             </div>
           </div>
         ))}
@@ -37,3 +40,5 @@ export class LessonList extends Component {
     );
   }
 }
+
+export default LessonList;
