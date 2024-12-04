@@ -1,15 +1,15 @@
 import React from "react";
 import { Bargraph1 } from "./EasyBar";
 import { Bargraph2 } from "./PaceBar";
-import "./TeacherFeedbackPage.css"; 
+import "./TeacherFeedbackPage.css";
 import { useNavigate } from "react-router-dom";
 import { paletteColors } from "./palette";
 
 const TeacherFeedbackPage = () => {
-   const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   return (
-    <div className="feedback-page" style={{ backgroundColor: "#F5F5F5", height: "100vh" }}>
+    <div className="w100">
       {/* Header */}
       <header
         style={{
@@ -25,18 +25,20 @@ const TeacherFeedbackPage = () => {
           style={{
             border: "none",
             background: "none",
-            fontSize: "2rem", 
+            fontSize: "2rem",
             cursor: "pointer",
             color: paletteColors.navy,
           }}
           // Navigate to Professor lesson list
-        onClick={() => navigate("/lesson-list-prof")} 
+          onClick={() => navigate("/lesson-list-prof")}
         >
           <i className="bi bi-arrow-left"></i>
         </button>
 
-        {/* update Title */} 
-        <h1 style={{ margin: 0, color: paletteColors.navy, fontSize: "1.5rem" }}>
+        {/* update Title */}
+        <h1
+          style={{ margin: 0, color: paletteColors.navy, fontSize: "1.5rem" }}
+        >
           Feedback
         </h1>
 
@@ -48,10 +50,10 @@ const TeacherFeedbackPage = () => {
               background: "none",
               color: paletteColors.navy,
               cursor: "pointer",
-              fontSize: "1.5rem", 
+              fontSize: "1.5rem",
             }}
             // Navigate to Login Form
-            onClick={() => navigate("/")} 
+            onClick={() => navigate("/")}
           >
             <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
           </button>
@@ -60,7 +62,7 @@ const TeacherFeedbackPage = () => {
               border: "none",
               background: "#FFCC5C",
               borderRadius: "50%",
-              width: "40px", 
+              width: "40px",
               height: "40px",
               display: "flex",
               justifyContent: "center",
@@ -68,42 +70,49 @@ const TeacherFeedbackPage = () => {
               cursor: "pointer",
             }}
             // Navigate to Edit Profile
-            onClick={() => navigate("/edit-profile-prof")} 
+            onClick={() => navigate("/edit-profile-prof")}
           >
-            <i className="bi bi-person-fill" style={{ color: paletteColors.navy }}></i>
+            <i
+              className="bi bi-person-fill"
+              style={{ color: paletteColors.navy }}
+            ></i>
           </button>
-        </div> 
+        </div>
       </header>
+      <div
+        className="feedback-page"
+        style={{ backgroundColor: "#F5F5F5", height: "100vh" }}
+      >
+        {/* Content */}
+        <div className="content">
+          <div className="question">
+            <h2>1. Was the content easy to understand?</h2>
+            <div className="graph-container">
+              <Bargraph1 />
+            </div>
+          </div>
 
-      {/* Content */}
-      <div className="content">
-        <div className="question">
-          <h2>1. Was the content easy to understand?</h2>
-          <div className="graph-container">
-            <Bargraph1 />
+          <div className="question">
+            <h2>2. Was the lesson an appropriate pace?</h2>
+            <div className="graph-container">
+              <Bargraph2 />
+            </div>
+          </div>
+
+          <div className="question">
+            <h2>3. Do you have any suggestions to improve the lesson?</h2>
+            <p className="student-name">STUDENT A</p>
+            <textarea
+              placeholder="I would like if the course moved a little quicker"
+              className="feedback-input"
+            ></textarea>
           </div>
         </div>
 
-        <div className="question">
-          <h2>2. Was the lesson an appropriate pace?</h2>
-          <div className="graph-container">
-            <Bargraph2 />
-          </div>
+        {/* Footer */}
+        <div className="footer">
+          <button className="download-button">Download Feedback</button>
         </div>
-
-        <div className="question">
-          <h2>3. Do you have any suggestions to improve the lesson?</h2>
-          <p className="student-name">STUDENT A</p>
-          <textarea
-            placeholder="I would like if the course moved a little quicker"
-            className="feedback-input"
-          ></textarea>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="footer">
-        <button className="download-button">Download Feedback</button>
       </div>
     </div>
   );
