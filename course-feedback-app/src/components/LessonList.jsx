@@ -16,7 +16,6 @@ export class LessonList extends Component {
   render() {
     return (
       <div className="list-box">
-        <NavBar title="Lessons" />
 
         {this.state.lessons.map((lesson, index) => (
           <div className="row course-row" key={lesson.id}>
