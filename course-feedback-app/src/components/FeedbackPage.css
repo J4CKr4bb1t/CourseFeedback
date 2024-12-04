@@ -13,11 +13,11 @@
   }
   .blue-box {
     border: 2px #4682b4 solid ;
-    background-color: rgba(173, 216, 230, 0.3); /* Light blue with some transparency */
+    background-color: rgba(173, 216, 230, 0.3); 
     border-radius: 5px;
     padding: 15px;
     margin-top: 10px;
-    position: relative; /* Ensures the content inside positions naturally */
+    position: relative; 
   }
   
 
