@@ -1,11 +1,11 @@
-git import React from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import "../App.css";
 import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
-import { LessonList } from "./LessonList";
+import { CourseListProf } from "./CourseListProf";
 
-const LessonPage = () => {
+const CoursePageProf = () => {
   const navigate = useNavigate();
 
   return (
@@ -30,7 +30,7 @@ const LessonPage = () => {
             color: paletteColors.navy,
           }}
           // Navigate to Course List
-          onClick={() => navigate("/course-list")}
+          onClick={() => navigate("/")}
         >
           <i className="bi bi-arrow-left"></i>
         </button>
@@ -39,7 +39,7 @@ const LessonPage = () => {
         <h1
           style={{ margin: 0, color: paletteColors.navy, fontSize: "1.5rem" }}
         >
-          Lesson List
+          Course List
         </h1>
 
         {/* Logout and Profile Icons */}
@@ -80,8 +80,8 @@ const LessonPage = () => {
         </div>
       </header>
       <br></br>
-      <LessonList />
+      <CourseListProf />
     </div>
   );
 };
-export default LessonPage;
+export default CoursePageProf;
