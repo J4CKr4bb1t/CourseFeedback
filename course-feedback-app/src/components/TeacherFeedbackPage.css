@@ -1,0 +1,109 @@
+.feedback-page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px; 
+    width: 100%; 
+    height: 100vh; 
+    background-color: #f9f9f9; 
+    box-sizing: border-box; 
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4682b4;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .profile-actions button {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .content {
+    margin-top: 30px;
+  }
+  
+  .question {
+    margin-bottom: 40px;
+  }
+  
+  .graph-container {
+    margin: 15px 0;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .feedback-input {
+    width: 100%; 
+    height: 120px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .student-name {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .download-button {
+    background-color: #ffcc00;
+    border: none;
+    color: black;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .download-button:hover {
+    background-color: #e6b800;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  @media (max-width: 768px) {
+    .header h1 {
+      font-size: 18px;
+    }
+  
+    .download-button {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  }
+  
