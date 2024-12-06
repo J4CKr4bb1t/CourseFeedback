@@ -37,45 +37,42 @@ const LessonPageProf = () => {
 
         {/* Title */}
         <h1
-          style={{ margin: 0, color: paletteColors.navy, fontSize: "1.5rem" }}
+          style={{ margin: 0, color: paletteColors.navy, fontWeight: "bold", fontSize: "2rem" }}
         >
           Lesson List
         </h1>
 
-        {/* Logout and Profile Icons */}
-        <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-          <button
-            style={{
-              border: "none",
-              background: "none",
-              color: paletteColors.navy,
-              cursor: "pointer",
-              fontSize: "1.5rem",
-            }}
-            // Navigate to Login Form
-            onClick={() => navigate("/")}
-          >
-            <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
-          </button>
+         {/* Logout and Profile Icons */}
+         <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
           <button
             style={{
               border: "none",
               background: "#FFCC5C",
               borderRadius: "50%",
-              width: "40px",
-              height: "40px",
+              width: "35px",
+              height: "35px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               cursor: "pointer",
             }}
-            // Navigate to Edit Profile
-            onClick={() => navigate("/edit-profile-prof")}
+             // Navigate to Edit Profile
+             onClick={() => navigate("/edit-profile-student")} 
           >
-            <i
-              className="bi bi-person-fill"
-              style={{ color: paletteColors.navy }}
-            ></i>
+            <i className="bi bi-person-fill" style={{ color:  paletteColors.navy }}></i> {/* Profile Icon */}
+          </button>
+          <button
+            style={{
+              border: "none",
+              background: "none",
+              color:  paletteColors.navy,
+              cursor: "pointer",
+              fontSize: "1.2rem",
+            }}
+            // Navigate to Login Form
+            onClick={() => navigate("/")} 
+          >
+            <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
           </button>
         </div>
       </header>

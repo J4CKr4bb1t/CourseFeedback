@@ -48,25 +48,12 @@ const EditProfileStudent = () => {
         </button>
 
         {/* Title */}
-        <h1 style={{ margin: 0, color:  paletteColors.navy, fontSize: "1.2rem" }}>
+        <h1 style={{ margin: 0, color:  paletteColors.navy, fontWeight: "bold", fontSize: "2rem" }}>
           Edit Profile
         </h1>
 
         {/* Logout and Profile Icons */}
         <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-          <button
-            style={{
-              border: "none",
-              background: "none",
-              color:  paletteColors.navy,
-              cursor: "pointer",
-              fontSize: "1.2rem",
-            }}
-            // Navigate to Login Form
-            onClick={() => navigate("/")} 
-          >
-            <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
-          </button>
           <button
             style={{
               border: "none",
@@ -83,6 +70,19 @@ const EditProfileStudent = () => {
              onClick={() => navigate("/edit-profile-student")} 
           >
             <i className="bi bi-person-fill" style={{ color:  paletteColors.navy }}></i> {/* Profile Icon */}
+          </button>
+          <button
+            style={{
+              border: "none",
+              background: "none",
+              color:  paletteColors.navy,
+              cursor: "pointer",
+              fontSize: "1.2rem",
+            }}
+            // Navigate to Login Form
+            onClick={() => navigate("/")} 
+          >
+            <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
           </button>
         </div>
       </header>
