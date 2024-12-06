@@ -39,9 +39,9 @@ const FeedbackPage = () => {
     navigate("/lessons");
   };
 
-  return (
+   return (
     <div className="w100">
-      {/* Header */}
+      { /*Header*/ }
       <header
         style={{
           backgroundColor: paletteColors.yorkBlue,
@@ -51,7 +51,7 @@ const FeedbackPage = () => {
           alignItems: "center",
         }}
       >
-        {/* Back Button */}
+        { /* Back Button */ }
         <button
           style={{
             border: "none",
@@ -66,7 +66,7 @@ const FeedbackPage = () => {
           <i className="bi bi-arrow-left"></i>
         </button>
 
-        {/* Title */}
+        { /*Title */}
         <h1
           style={{ margin: 0, color: paletteColors.navy, fontSize: "1.2rem" }}
         >
@@ -86,7 +86,7 @@ const FeedbackPage = () => {
             // Navigate to Login Form
             onClick={() => navigate("/")}
           >
-            <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
+            <i className="bi bi-box-arrow-right"></i> { /*Logout Icon */}
           </button>
           <button
             style={{
@@ -107,7 +107,7 @@ const FeedbackPage = () => {
               className="bi bi-person-fill"
               style={{ color: paletteColors.navy }}
             ></i>{" "}
-            {/* Profile Icon */}
+            { /*Profile Icon */}
           </button>
         </div>
       </header>
