@@ -30,7 +30,7 @@ const LoginForm = () => {
           padding: "15px 0",
           textAlign: "center",
           color: paletteColors.navy,
-          fontSize: "1.5rem",
+          fontSize: "2rem",
           fontWeight: "bold",
         }}
       >
