@@ -9,10 +9,16 @@ function testClassSchema() {
   // Create a valid user instance
   const testClass = new Class({
     // CONSTRUCTOR CODE HERE!!!
+    name: "Intro to Biology", 
+    abbrev: "BIO 101",
+    prof: "Adams, John",
   });
 
   // Test virtual property
   //console.log("Full Name:", validUser.name);
+  console.log("Display Name:", testClass.displayName);
+  console.log("Professor:", testClass.prof);
+  console.log("Name:", testClass.name");
   // ADD OTHER CONSOLE LOG TESTS HERE!!!
 }
 
