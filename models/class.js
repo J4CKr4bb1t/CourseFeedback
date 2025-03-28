@@ -4,19 +4,17 @@ var Schema = mongoose.Schema;
 
 var ClassSchema = Schema({
   //CLASS SCHEMA CONSTRUCTORS HERE
-  //   email: { type: String, required: true, max: 100 },
-  //   first_name: { type: String, required: true, max: 100 },
-  //   last_name: { type: String, required: true, max: 100 },
-  //   type: { type: String, required: true },
+  name: { type: String, required: true, maxLength: 100 },
+  abbrev: { type: String, required: true, maxLength: 20 },
+  prof: { type: String, required: true, maxLength: 100 },
 });
 
 // Virtual for user's full name
-//DERIVED attribute- is there anything for the lesson that is DERIVED By the constructor information?
+//DERIVED attribute- full display name
 
-//Full name example derived attribute
-// UserSchema.virtual("name").get(function () {
-//   return this.first_name + ", " + this.last_name;
-// });
+ClassSchema.virtual("displayName").get(function () {
+  return '${this.abbrev} - ${this.name}';
+});
 
 //Export model
 module.exports = mongoose.model("Class", ClassSchema);

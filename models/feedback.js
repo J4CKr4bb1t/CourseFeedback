@@ -4,19 +4,28 @@ var Schema = mongoose.Schema;
 
 var FeedbackSchema = Schema({
   //FEEDBACK SCHEMA CONSTRUCTORS HERE
-  //   email: { type: String, required: true, max: 100 },
-  //   first_name: { type: String, required: true, max: 100 },
-  //   last_name: { type: String, required: true, max: 100 },
-  //   type: { type: String, required: true },
+  lesson: { type: Schema.Types.ObjectId, ref: "Lesson", required: true },
+  user: { type: Schema.Types.ObjectId, ref: "User", required: true},
+  contentClarity: {
+    type: String, 
+    enum: ["Very unclear", "A little unclear", "Neutral", "A little clear", "Very clear"],
+    required: true, 
+  }, 
+  pace: {
+    type: String, 
+    enum: ["Too Slow, Just Right, Too Fast"],
+    required: true,
+  },
+  suggestions: { type: String, maxLength: 1000 },
+  submittedAt: { type: Date, default: Date.now },
 });
 
 // Virtual for user's full name
 //DERIVED attribute- is there anything for the lesson that is DERIVED By the constructor information?
 
-//Full name example derived attribute
-// UserSchema.virtual("name").get(function () {
-//   return this.first_name + ", " + this.last_name;
-// });
+FeedbackSchema.virtual("summary").get(function () {
+  return '${this.contentClarity}, ${this.pace}';
+});
 
 //Export model
 module.exports = mongoose.model("Feedback", FeedbackSchema);
