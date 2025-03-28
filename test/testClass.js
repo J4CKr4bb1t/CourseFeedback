@@ -18,7 +18,7 @@ function testClassSchema() {
   //console.log("Full Name:", validUser.name);
   console.log("Display Name:", testClass.displayName);
   console.log("Professor:", testClass.prof);
-  console.log("Name:", testClass.name");
+  console.log("Name:", testClass.name);
   // ADD OTHER CONSOLE LOG TESTS HERE!!!
 }
 
