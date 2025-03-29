@@ -1,22 +1,24 @@
 var mongoose = require("mongoose");
+const feedback = require("./feedback");
 
 var Schema = mongoose.Schema;
 
 var LessonSchema = Schema({
   //LESSON SCHEMA CONSTRUCTORS HERE
-  //   email: { type: String, required: true, max: 100 },
-  //   first_name: { type: String, required: true, max: 100 },
-  //   last_name: { type: String, required: true, max: 100 },
-  //   type: { type: String, required: true },
+      number: {type: Number, required:true},
+      name:{type: String, required:true, maxLength:500}, 
+      date:{type: Date, required:true },
+      feedback: {type: Schema.Types.ObjectId, ref:'Feedback', required:true}
 });
 
 // Virtual for user's full name
 //DERIVED attribute- is there anything for the lesson that is DERIVED By the constructor information?
 
-//Full name example derived attribute
-// UserSchema.virtual("name").get(function () {
-//   return this.first_name + ", " + this.last_name;
-// });
+//Lesson title derived attribute
+LessonSchema.virtual("lessonTitle").get(function () {
+   return `Lesson ${this.number}: ${this.name}`;
+ });
+
 
 //Export model
 module.exports = mongoose.model("Lesson", LessonSchema);
