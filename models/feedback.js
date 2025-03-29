@@ -24,7 +24,7 @@ var FeedbackSchema = Schema({
 //DERIVED attribute- is there anything for the lesson that is DERIVED By the constructor information?
 
 FeedbackSchema.virtual("summary").get(function () {
-  return '${this.contentClarity}, ${this.pace}';
+  return `${this.contentClarity}, ${this.pace}`;
 });
 
 //Export model
