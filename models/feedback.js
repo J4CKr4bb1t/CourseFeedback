@@ -13,7 +13,7 @@ var FeedbackSchema = Schema({
   }, 
   pace: {
     type: String, 
-    enum: ["Too Slow, Just Right, Too Fast"],
+    enum: ["Too Slow", "Just Right", "Too Fast"],
     required: true,
   },
   suggestions: { type: String, maxLength: 1000 },
