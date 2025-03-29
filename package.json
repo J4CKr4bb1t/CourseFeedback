@@ -17,7 +17,9 @@
   "homepage": "https://github.com/J4CKr4bb1t/CourseFeedback#readme",
   "description": "",
   "dependencies": {
-    "jest": "^29.7.0",
     "mongoose": "^8.13.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
