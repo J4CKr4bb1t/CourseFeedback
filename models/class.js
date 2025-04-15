@@ -6,8 +6,8 @@ var ClassSchema = Schema({
   //CLASS SCHEMA CONSTRUCTORS HERE
   name: { type: String, required: true, maxLength: 100 },
   abbrev: { type: String, required: true, maxLength: 20 },
-  section: { type: Number, required: false},
-  professors: [{ type: Schema.Types.ObjectId, ref: "User "}],
+  section: { type: Number, required: false },
+  professors: [{ type: Schema.Types.ObjectId, ref: "User " }],
   students: [{ type: Schema.Types.ObjectId, ref: "User" }],
   lessons: [{ type: Schema.Types.ObjectId, ref: "Lesson" }],
 });
