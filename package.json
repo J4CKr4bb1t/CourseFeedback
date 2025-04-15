@@ -17,8 +17,10 @@
   "homepage": "https://github.com/J4CKr4bb1t/CourseFeedback#readme",
   "description": "",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
-    "mongoose": "^8.13.2"
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "jest": "^29.7.0"
