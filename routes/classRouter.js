@@ -5,10 +5,10 @@ const Class = require("../models/class");
 // GET all classes
 router.get("/", async (req, res) => {
   try {
-    const classes = await Class.find()
-      .populate("lessons")
-      .populate("students")
-      .populate("professors");
+    const classes = await Class.find();
+    // .populate("lessons")
+    // .populate("students")
+    // .populate("professors");
     res.json(classes);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -32,7 +32,14 @@ router.get("/:id", async (req, res) => {
 // POST create a class
 router.post("/", async (req, res) => {
   const { name, abbrev, section, professors, students, lessons } = req.body;
-  const newClass = new Class({ number, name, date, feedback });
+  const newClass = new Class({
+    name,
+    abbrev,
+    section,
+    professors,
+    students,
+    lessons,
+  });
 
   try {
     const savedClass = await newClass.save();
