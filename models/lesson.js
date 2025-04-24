@@ -5,10 +5,10 @@ var Schema = mongoose.Schema;
 
 var LessonSchema = Schema({
   //LESSON SCHEMA CONSTRUCTORS HERE
-      number: {type: Number, required:true},
-      name:{type: String, required:true, maxLength:500}, 
-      date:{type: Date, required:true },
-      feedback: {type: Schema.Types.ObjectId, ref:'Feedback', required:true}
+  number: { type: Number, required: true },
+  name: { type: String, required: true, maxLength: 500 },
+  date: { type: Date, required: true },
+  feedback: { type: Schema.Types.ObjectId, ref: "Feedback", required: false },
 });
 
 // Virtual for user's full name
@@ -16,9 +16,8 @@ var LessonSchema = Schema({
 
 //Lesson title derived attribute
 LessonSchema.virtual("lessonTitle").get(function () {
-   return `Lesson ${this.number}: ${this.name}`;
- });
-
+  return `Lesson ${this.number}: ${this.name}`;
+});
 
 //Export model
 module.exports = mongoose.model("Lesson", LessonSchema);

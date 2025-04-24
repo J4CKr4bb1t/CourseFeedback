@@ -18,6 +18,7 @@ router.get("/", async (req, res) => {
 // GET a class by ID
 router.get("/:id", async (req, res) => {
   try {
+    console.log("SEACHING ID ", req.params.id);
     const gotClass = await Class.findById(req.params.id)
       .populate("lessons")
       .populate("students")
