@@ -40,7 +40,6 @@ const FeedbackPage = () => {
   };
 
   return (
-    
     <div className="w100">
       <header
         style={{
@@ -51,7 +50,7 @@ const FeedbackPage = () => {
           alignItems: "center",
         }}
       >
-        { /* Back Button */ }
+        {/* Back Button */}
         <button
           style={{
             border: "none",
@@ -66,42 +65,30 @@ const FeedbackPage = () => {
           <i className="bi bi-arrow-left"></i>
         </button>
 
-        { /*Title */}
+        {/*Title */}
         <h1
-          style={{ margin: 0, color: paletteColors.navy, fontWeight: "bold", fontSize: "2rem" }}
+          style={{
+            margin: 0,
+            color: paletteColors.navy,
+            fontWeight: "bold",
+            fontSize: "2rem",
+          }}
         >
           Feedback
         </h1>
 
-         {/* Logout and Profile Icons */}
-         <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-          <button
-            style={{
-              border: "none",
-              background: "#FFCC5C",
-              borderRadius: "50%",
-              width: "35px",
-              height: "35px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-            }}
-             // Navigate to Edit Profile
-             onClick={() => navigate("/edit-profile-student")} 
-          >
-            <i className="bi bi-person-fill" style={{ color:  paletteColors.navy }}></i> {/* Profile Icon */}
-          </button>
+        {/* Logout and Profile Icons */}
+        <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
           <button
             style={{
               border: "none",
               background: "none",
-              color:  paletteColors.navy,
+              color: paletteColors.navy,
               cursor: "pointer",
               fontSize: "1.2rem",
             }}
             // Navigate to Login Form
-            onClick={() => navigate("/")} 
+            onClick={() => navigate("/")}
           >
             <i className="bi bi-box-arrow-right"></i> {/* Logout Icon */}
           </button>
@@ -162,7 +149,12 @@ const FeedbackPage = () => {
             />
           </div>
           <div className="d-flex justify-content-end gap-3">
-            <button type="submit" className={`btn ${isEditing ? 'btn-edit-feedback' : 'btn-submit-feedback'}`}>
+            <button
+              type="submit"
+              className={`btn ${
+                isEditing ? "btn-edit-feedback" : "btn-submit-feedback"
+              }`}
+            >
               {isEditing ? "Update Feedback" : "Submit Feedback"}
             </button>
           </div>
@@ -173,4 +165,3 @@ const FeedbackPage = () => {
 };
 
 export default FeedbackPage;
-

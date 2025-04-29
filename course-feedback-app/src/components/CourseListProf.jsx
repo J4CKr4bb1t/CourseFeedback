@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getCourse, getCourses } from "../services/CourseService";
+// import { getCourse, getCourses } from "../services/CourseService";
 import FeedbackButtonProf from "./FeedbackButtonProf";
 import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +9,28 @@ export class CourseListProf extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      courses: getCourses(),
+      courses: [],
     };
+
+    this.fetchCourses();
+  }
+
+  fetchCourses() {
+    fetch("http://localhost:3000/class") // Replace with our URL for the fetch request
+      .then((res) => res.json())
+      .then((data) => {
+        //use token to get ID of current prof/student.
+        const targetProfessorId = "123456789abcdef";
+
+        const filteredData = data.filter((course) =>
+          course.professors.includes(targetProfessorId)
+        );
+
+        this.setState({ courses: filteredData });
+      })
+      .catch((error) => {
+        console.error("Error fetching courses:", error);
+      });
   }
 
   render() {

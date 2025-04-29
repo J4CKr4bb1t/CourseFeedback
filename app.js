@@ -2,9 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-require("dotenv").config(); // if using a .env file for DB URI
+const cors = require("cors");
+
+//require("dotenv").config(); // if using a .env file for DB URI
 
 const app = express();
+
+app.use(cors());
 
 const authRouter = require("./routes/authRouter");
 const classRouter = require("./routes/classRouter");

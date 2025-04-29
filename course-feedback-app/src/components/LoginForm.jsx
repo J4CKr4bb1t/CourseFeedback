@@ -15,9 +15,9 @@ const LoginForm = () => {
   // Navigate to the respective profile page after login
   const onSubmit = (data, userType) => {
     if (userType === "student") {
-      navigate("/edit-profile-student");
+      navigate("/course-list");
     } else if (userType === "professor") {
-      navigate("/edit-profile-prof");
+      navigate("/course-list-prof");
     }
   };
 
