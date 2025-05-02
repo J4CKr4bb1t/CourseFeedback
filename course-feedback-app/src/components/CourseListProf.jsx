@@ -20,6 +20,7 @@ export class CourseListProf extends Component {
       .then((res) => res.json())
       .then((data) => {
         //use token to get ID of current prof/student.
+        //TODO charlize
         const targetProfessorId = "123456789abcdef";
 
         const filteredData = data.filter((course) =>
