@@ -3,10 +3,19 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const User = require("./models/user");
 
 //require("dotenv").config(); // if using a .env file for DB URI
 
 const app = express();
+
+//add passport 
+app.use(passport.initialize());
+passport.use(new LocalStrategy({ usernameField: "email" }, User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use(cors());
 

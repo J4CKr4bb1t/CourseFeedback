@@ -13,13 +13,42 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   // Navigate to the respective profile page after login
-  const onSubmit = (data, userType) => {
-    if (userType === "student") {
-      navigate("/course-list");
-    } else if (userType === "professor") {
-      navigate("/course-list-prof");
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+      });
+  
+      const result = await response.json();
+  
+      if (!response.ok) {
+        alert(result.message || "Login failed");
+        return;
+      }
+  
+      // Save token to localStorage or sessionStorage
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("user", JSON.stringify(result.user));
+  
+      // Navigate to the appropriate dashboard
+      if (result.user.type === "student") {
+        navigate("/course-list");
+      } else if (result.user.type === "professor") {
+        navigate("/course-list-prof");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Something went wrong. Please try again.");
     }
   };
+  
 
   return (
     <div style={{ backgroundColor: paletteColors.white, height: "100vh" }}>
@@ -143,42 +172,24 @@ const LoginForm = () => {
 
             {/* Login Buttons */}
             <button
-              type="button"
-              onClick={handleSubmit((data) => onSubmit(data, "student"))}
-              style={{
-                width: "100%",
-                padding: "12px",
-                marginBottom: "10px",
-                backgroundColor: paletteColors.burntGold,
-                color: paletteColors.white,
-                fontSize: "1rem",
-                fontWeight: "bold",
-                border: "none",
-                borderRadius: "20px",
-                cursor: "pointer",
-                textTransform: "uppercase",
-              }}
-            >
-              Login as Student
-            </button>
-            <button
-              type="button"
-              onClick={handleSubmit((data) => onSubmit(data, "professor"))}
-              style={{
-                width: "100%",
-                padding: "12px",
-                backgroundColor: paletteColors.mediumBlue,
-                color: paletteColors.white,
-                fontSize: "1rem",
-                fontWeight: "bold",
-                border: "none",
-                borderRadius: "20px",
-                cursor: "pointer",
-                textTransform: "uppercase",
-              }}
-            >
-              Login as Professor
-            </button>
+                  type="button"
+                  onClick={handleSubmit(onSubmit)}
+                  style={{
+                            width: "100%",
+                            padding: "12px",
+                            marginBottom: "10px",
+                            backgroundColor: paletteColors.burntGold,
+                            color: paletteColors.white,
+                            fontSize: "1rem",
+                            fontWeight: "bold",
+                            border: "none",
+                            borderRadius: "20px",
+                            cursor: "pointer",
+                            textTransform: "uppercase",
+                          }}
+                      >
+                        Login
+              </button>
           </form>
         </div>
       </div>

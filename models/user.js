@@ -1,13 +1,21 @@
 var mongoose = require("mongoose");
-
+const passportLocalMongoose = require('passport-local-mongoose');
 var Schema = mongoose.Schema;
 
-var UserSchema = Schema({
-  email: { type: String, required: true, max: 100 },
+const UserSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/^[a-zA-Z0-9._%+-]+@quinnipiac\.edu$/, "Must be a quinnipiac.edu email"],
+  },
   first_name: { type: String, required: true, max: 100 },
   last_name: { type: String, required: true, max: 100 },
-  type: { type: String, required: true },
+  type: { type: String, enum: ["student", "professor"], required: true },
 });
+
+//add plugin for passport
+UserSchema.plugin(passportLocalMongoose, {usernameField: "email"});
 
 // Virtual for user's full name
 //DERIVED attribute
