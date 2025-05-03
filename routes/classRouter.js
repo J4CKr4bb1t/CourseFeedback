@@ -52,6 +52,48 @@ router.put("/:courseID/add-student/:studentId", async (req, res) => {
   }
 });
 
+//PUT add a prof
+router.put("/:courseID/add-professor/:profID", async (req, res) => {
+  try {
+    const updatedClass = await Class.findByIdAndUpdate(
+      req.params.courseID,
+      { $addToSet: { professors: req.params.profID } }, // avoids duplicates
+      { new: true }
+    )
+      .populate("lessons")
+      .populate("students")
+      .populate("professors");
+
+    if (!updatedClass)
+      return res.status(404).json({ message: "Class not found" });
+
+    res.json(updatedClass);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+//PUT add a lesson
+router.put("/:courseID/add-lesson/:lessonID", async (req, res) => {
+  try {
+    const updatedClass = await Class.findByIdAndUpdate(
+      req.params.courseID,
+      { $addToSet: { lessons: req.params.lessonID } }, // avoids duplicates
+      { new: true }
+    )
+      .populate("lessons")
+      .populate("students")
+      .populate("professors");
+
+    if (!updatedClass)
+      return res.status(404).json({ message: "Class not found" });
+
+    res.json(updatedClass);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 // POST create a class
 router.post("/", async (req, res) => {
   const { name, abbrev, section, professors, students, lessons } = req.body;

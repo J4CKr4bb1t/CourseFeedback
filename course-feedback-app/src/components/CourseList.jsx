@@ -18,10 +18,8 @@ export class CourseList extends Component {
     fetch("http://localhost:3000/class") // Replace with our URL for the fetch request
       .then((res) => res.json())
       .then((data) => {
-        //use token to get ID of current prof/student.
-        // 681124b8b92f0089800cc8fb John Doe ID
         //TODO get ID from token instead
-        const targetStudentID = "681124b8b92f0089800cc8fb";
+        const targetStudentID = "680a9ff274d04a74dda6e34b";
 
         const filteredData = data.filter((course) =>
           course.students.includes(targetStudentID)

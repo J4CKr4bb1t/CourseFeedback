@@ -16,6 +16,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//new user
 router.post("/login/create", async (req, res) => {
   const { first_name, last_name, type, email } = req.body;
 
@@ -24,6 +25,24 @@ router.post("/login/create", async (req, res) => {
   try {
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// PUT update user by ID
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id, // ID from URL
+      req.body, // Fields to update
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedUser)
+      return res.status(404).json({ message: "User not found" });
+
+    res.json(updatedUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
