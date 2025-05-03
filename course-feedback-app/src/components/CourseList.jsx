@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import FeedbackButton from "./FeedbackButton";
 import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import "../App.css";
 
 export class CourseList extends Component {
@@ -15,14 +16,28 @@ export class CourseList extends Component {
   }
 
   fetchCourses() {
-    fetch("http://localhost:3000/class") // Replace with our URL for the fetch request
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+    } catch (err) {
+      console.error("Invalid token:", err);
+      return;
+    }
+
+    const studentId = decoded._id;
+
+    fetch("http://localhost:3000/class")
       .then((res) => res.json())
       .then((data) => {
-        //TODO get ID from token instead
-        const targetStudentID = "680a9ff274d04a74dda6e34b";
-
         const filteredData = data.filter((course) =>
-          course.students.includes(targetStudentID)
+          course.students.includes(studentId)
         );
 
         this.setState({ courses: filteredData });
