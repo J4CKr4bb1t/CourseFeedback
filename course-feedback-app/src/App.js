@@ -15,6 +15,7 @@ import CoursePage from "./components/CoursePage";
 import LessonPage from "./components/LessonPage";
 import LessonPageProf from "./components/LessonPageProf";
 import CoursePageProf from "./components/CoursePageProf";
+import CreateForm from "./components/createUser";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         {/* Default Login Page */}
         <Route path="/" element={<LoginForm />} />
+        <Route path="/createAccount" element={<CreateForm />} />
 
         {/* Student Profile Page*/}
         {/* <Route path="/edit-profile-student" element={<EditProfileStudent />} /> */}
