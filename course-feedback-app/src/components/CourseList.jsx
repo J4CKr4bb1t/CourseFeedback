@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "../App.css";
 
-export class CourseList extends Component {
+export class CourseList extends Component { 
   constructor(props) {
     super(props);
     this.state = {

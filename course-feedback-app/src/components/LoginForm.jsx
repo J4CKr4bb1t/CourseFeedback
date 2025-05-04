@@ -38,9 +38,10 @@ const LoginForm = () => {
       localStorage.setItem("user", JSON.stringify(result.user));
   
       // Navigate to the appropriate dashboard
-      if (result.user.type === "student") {
+      const userType = result.user.type.toLowerCase();
+      if (userType === "student") {
         navigate("/course-list");
-      } else if (result.user.type === "professor") {
+      } else if (userType === "professor") {
         navigate("/course-list-prof");
       }
     } catch (error) {

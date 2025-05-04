@@ -26,19 +26,3 @@ exports.verifyUser = (req, res, next) => {
     res.status(403).json({ message: "No token provided." });
   }
 };
-
-exports.verifyProfessor = (req, res, next) => {
-  if (req.user.type === "professor") {
-    next();
-  } else {
-    res.status(403).json({ message: "Only professors can access this page." });
-  }
-};
-
-exports.verifyStudent = (req, res, next) => {
-  if (req.user.type === "student") {
-    next();
-  } else {
-    res.status(403).json({ message: "Only students can access this page." });
-  }
-};

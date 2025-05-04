@@ -11,7 +11,7 @@ const UserSchema = new Schema({
   },
   first_name: { type: String, required: true, max: 100 },
   last_name: { type: String, required: true, max: 100 },
-  type: { type: String, enum: ["student", "professor"], required: true },
+  type: { type: String, enum: ["student", "professor","Student","Professor"], required: true },
 });
 
 //add plugin for passport

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import FeedbackButtonProf from "./FeedbackButtonProf";
 import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import "../App.css";
 
 export class CourseListProf extends Component {
@@ -16,23 +17,47 @@ export class CourseListProf extends Component {
   }
 
   fetchCourses() {
-    fetch("http://localhost:3000/class") // Replace with our URL for the fetch request
+    //get JWT token from local storage
+    const token = localStorage.getItem("token");
+  
+    //if no token is found, log error
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+  
+    let decoded;
+    try {
+      //get/decode token from user info
+      decoded = jwtDecode(token);
+    } catch (err) {
+      //if the token is not valid, log error
+      console.error("Invalid token:", err);
+      return;
+    }
+  
+    //get prof id from token
+    const professorId = decoded._id;
+  
+    //get all classes from db
+    fetch("http://localhost:3000/class")
       .then((res) => res.json())
       .then((data) => {
-        //use token to get ID of current prof/student.
-        //TODO charlize
-        const targetProfessorId = "123456789abcdef";
-
+        //get class taught by prof
         const filteredData = data.filter((course) =>
-          course.professors.includes(targetProfessorId)
+          course.professors.includes(professorId)
         );
-
+  
+        //load their classes
         this.setState({ courses: filteredData });
       })
       .catch((error) => {
+      
         console.error("Error fetching courses:", error);
       });
   }
+  
+
 
   render() {
     return (

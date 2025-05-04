@@ -14,7 +14,7 @@ const app = express();
 //add passport 
 app.use(passport.initialize());
 passport.use(new LocalStrategy({ usernameField: "email" }, User.authenticate()));
-passport.serializeUser(User.serializeUser());
+passport.serializeUser(User.serializeUser()); 
 passport.deserializeUser(User.deserializeUser());
 
 app.use(cors());

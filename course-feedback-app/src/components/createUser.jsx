@@ -24,7 +24,7 @@ const CreateForm = () => {
     };
 
     if (data.password !== data.password2)
-      throw new Error("Passwords do not match");
+      alert("Passwords do not match");
 
     fetch("http://localhost:3000/login/create", {
       method: "POST",
