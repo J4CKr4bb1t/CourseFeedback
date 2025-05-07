@@ -23,8 +23,7 @@ const CreateForm = () => {
       password: data.password,
     };
 
-    if (data.password !== data.password2)
-      alert("Passwords do not match");
+    // if (data.password !== data.password2) alert("Passwords do not match");
 
     fetch("http://localhost:3000/login/create", {
       method: "POST",
@@ -250,7 +249,7 @@ const CreateForm = () => {
             </div>
 
             {/* Confirm Password Input */}
-            <div style={{ marginBottom: "20px" }}>
+            {/* <div style={{ marginBottom: "20px" }}>
               <label
                 htmlFor="password"
                 style={{
@@ -292,7 +291,7 @@ const CreateForm = () => {
                   {errors.password2.message}
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* Login Buttons */}
             <button
