@@ -16,6 +16,7 @@ import LessonPage from "./components/LessonPage";
 import LessonPageProf from "./components/LessonPageProf";
 import CoursePageProf from "./components/CoursePageProf";
 import CreateForm from "./components/createUser";
+import LessonListProf from "./components/LessonListProf";
 
 function App() {
   return (
@@ -43,8 +44,9 @@ function App() {
 
         {/* Course Course Page for Prof */}
         <Route path="/course-list-prof" element={<CoursePageProf />} />
-        {/* Lesson List Page for PROF */}
-        <Route path="/lesson-list-prof" element={<LessonPageProf />} />
+
+        {/* Lesson List Page for PROF (with courseId) */}
+        <Route path="/lesson-list-prof/:courseId" element={<LessonListProf />}/>
 
         {/* Course feedback Page for Prof */}
         <Route

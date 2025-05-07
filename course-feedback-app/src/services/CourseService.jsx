@@ -1,4 +1,27 @@
-const courses = [
+const API_BASE = "http://localhost:3000";
+
+async function fetchWithAuth(path) {
+  const token = localStorage.getItem("token");
+  const res = await fetch(`${API_BASE}${path}`, {
+    headers: { 
+      "Content-Type": "application/json",
+      "x-access-token": token
+    },
+  });
+  if (!res.ok) throw new Error(res.statusText);
+  return res.json();
+}
+
+export function getAllClasses() {
+  return fetchWithAuth("/class");
+}
+
+export function getClassById(id) {
+  return fetchWithAuth(`/class/${id}`);
+}
+
+/*
+ const courses = [
   {
     id: 1,
     name: "Intro to Biology",
@@ -24,6 +47,7 @@ const courses = [
     prof: "Goodal, Jane",
   },
 ];
+*/ 
 
 const lessons = [
   {
@@ -79,15 +103,18 @@ const lessons = [
   },
 ];
 
+/*
 // export means you can call outside the file
 export function getCourses() {
   return courses;
 }
-
+*/
 export function getLessons() {
   return lessons;
 }
 
+/*
 export function getCourse(id) {
   return courses.find((c) => c.id === id);
 }
+*/

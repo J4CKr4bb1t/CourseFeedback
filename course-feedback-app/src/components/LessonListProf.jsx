@@ -1,59 +1,112 @@
-import React, { Component } from "react";
-import { getLessons } from "../services/CourseService";
-import { useNavigate } from "react-router-dom";
+// src/components/LessonListProf.jsx
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getClassById } from "../services/CourseService";
 import "../App.css";
+import { paletteColors } from "./palette";
 
-const ViewFeedbackButton = ({ lessonId }) => {
+export default function LessonListProf() {
+  const { courseId } = useParams();
+  const [lessons, setLessons] = useState([]);
   const navigate = useNavigate();
 
-  const handleViewFeedback = () => {
-    navigate(`/teacher-feedback/${lessonId}`);
-  };
+  useEffect(() => {
+    getClassById(courseId)
+      .then((cls) => {
+        // backend returns populated lessons array
+        setLessons(cls.lessons);
+      })
+      .catch((err) => console.error("Failed to load lessons:", err));
+  }, [courseId]);
 
   return (
-    <button onClick={handleViewFeedback} className="btn btn-primary" style={{
-      backgroundColor: "#FFB81C", 
-      border: "none",
-      color: "black",
-      padding: "15px 20px",
-      fontSize: "1.2rem",
-      borderRadius: "25px",
-      cursor: "pointer",
-      textAlign: "center",
-    }}>
-      View Feedback
-    </button>
-  );
-};
+    <div className="w100">
+      {/* Header (same style as CoursePageProf) */}
+      <header
+        style={{
+          backgroundColor: paletteColors.yorkBlue,
+          padding: "15px 20px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        {/* Back to courses */}
+        <button
+          style={{
+            border: "none",
+            background: "none",
+            fontSize: "2rem",
+            cursor: "pointer",
+            color: paletteColors.navy,
+          }}
+          onClick={() => navigate("/course-list-prof")}
+        >
+          <i className="bi bi-arrow-left"></i>
+        </button>
 
-export class LessonListProf extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lessons: getLessons(),
-    };
-  }
+        <h1
+          style={{
+            margin: 0,
+            color: paletteColors.navy,
+            fontWeight: "bold",
+            fontSize: "2rem",
+          }}
+        >
+          Lesson List
+        </h1>
 
-  render() {
-    return (
+        {/* Logout */}
+        <button
+          style={{
+            border: "none",
+            background: "none",
+            color: paletteColors.navy,
+            cursor: "pointer",
+            fontSize: "1.2rem",
+          }}
+          onClick={() => navigate("/")}
+        >
+          <i className="bi bi-box-arrow-right"></i>
+        </button>
+      </header>
+
       <div className="list-box">
-        {this.state.lessons.map((lesson, index) => (
-          <div className="row course-row" key={lesson.id}>
+        {lessons.map((lesson) => (
+          <div key={lesson._id} className="row course-row">
             <div className="col-md-2">
-              <h1 className="cl">Lesson {index + 1}</h1>
+              <h1 className="cl">Lesson {lesson.number}</h1>
             </div>
             <div className="col-md-4">
               <h3 className="cl">{lesson.name}</h3>
             </div>
             <div className="col-md-4">
-              <h3 className="cl">{lesson.date}</h3>
+              <h3 className="cl">
+                {new Date(lesson.date).toLocaleDateString()}
+              </h3>
             </div>
             <div className="col-md-2">
-              <ViewFeedbackButton lessonId={lesson.id} />
+              <button
+                className="btn btn-view-lessons cl"
+                style={{
+                  backgroundColor: "#FFB81C",
+                  border: "none",
+                  color: "black",
+                  padding: "10px 15px",
+                  fontSize: "1rem",
+                  borderRadius: "25px",
+                  cursor: "pointer",
+                }}
+                onClick={() =>
+                  navigate(`/teacher-feedback/${lesson._id}`)
+                }
+              >
+                <h3 className="btn-txt b1">VIEW FEEDBACK</h3>
+              </button>
             </div>
           </div>
         ))}
       </div>
-    );
-  }
+    </div>
+  );
 }

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-// import { getCourse, getCourses } from "../services/CourseService";
 import FeedbackButtonProf from "./FeedbackButtonProf";
+import { jwtDecode } from "jwt-decode";
+import { getAllClasses } from "../services/CourseService";
 import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import "../App.css";
 
 export class CourseListProf extends Component {
@@ -40,7 +40,7 @@ export class CourseListProf extends Component {
     const professorId = decoded._id;
   
     //get all classes from db
-    fetch("http://localhost:3000/class")
+    /*fetch("http://localhost:3000/class")
       .then((res) => res.json())
       .then((data) => {
         //get class taught by prof
@@ -50,7 +50,12 @@ export class CourseListProf extends Component {
   
         //load their classes
         this.setState({ courses: filteredData });
-      })
+      }) */
+      getAllClasses()
+        .then((all) =>
+          all.filter((course) => course.professors.includes(professorId))
+        )
+        .then((filtered) => this.setState({ courses: filtered }))
       .catch((error) => {
       
         console.error("Error fetching courses:", error);
@@ -63,7 +68,7 @@ export class CourseListProf extends Component {
     return (
       <div className="list-box">
         {this.state.courses.map((course, index) => (
-          <div className="row course-row">
+          <div key={course._id} className="row course-row">
             <div className="col-md-2">
               <h1 className="cl">{course.abbrev}</h1>
             </div>
@@ -72,7 +77,7 @@ export class CourseListProf extends Component {
             </div>
             <div className="col-md-4"></div>
             <div className="col-md-2">
-              <FeedbackButtonProf />
+              <FeedbackButtonProf courseId={course._id} />
             </div>
           </div>
         ))}
