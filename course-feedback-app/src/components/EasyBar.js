@@ -1,4 +1,4 @@
-import { Bar } from "react-chartjs-2"; //connects chart to React
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,38 +7,8 @@ import {
   Legend,
   Title,
   Tooltip,
-  scales,
-} from "chart.js"; //from chart library
-import { fontString } from "chart.js/helpers";
+} from "chart.js";
 import { paletteColors } from "./palette";
-
-let titletxt = "Content Clarity";
-//labels for bar chart cols
-let barChartLabels = [
-  "Very Unclear",
-  "A little Unclear",
-  "Neutral",
-  "A little Clear",
-  "Very Clear",
-];
-
-let defaultBarLabel = "Student Feedback";
-let defaultBarData = [10, 15, 18, 22, 4];
-
-//data for bar chart
-const barChartData = {
-  labels: barChartLabels,
-  datasets: [
-    {
-      label: defaultBarLabel,
-      data: defaultBarData,
-      borderWidth: 0,
-
-      backgroundColor: paletteColors.gold,
-      hoverBackgroundColor: paletteColors.burntGold,
-    },
-  ],
-};
 
 ChartJS.register(
   CategoryScale,
@@ -49,65 +19,71 @@ ChartJS.register(
   Tooltip
 );
 
-export const Bargraph1 = () => {
+const titletxt = "Content Clarity";
+const barChartLabels = [
+  "Very unclear",
+  "A little unclear",
+  "Neutral",
+  "A little clear",
+  "Very clear",
+];
+const defaultBarLabel = "Student Feedback";
+// default zeros matching the number of labels:
+const defaultBarData = Array(barChartLabels.length).fill(0);
+
+// helper to build the Chart.js data object
+function makeBarChartData(dataArray) {
+  return {
+    labels: barChartLabels,
+    datasets: [
+      {
+        label: defaultBarLabel,
+        data: dataArray,
+        borderWidth: 0,
+        backgroundColor: paletteColors.gold,
+        hoverBackgroundColor: paletteColors.burntGold,
+      },
+    ],
+  };
+}
+
+export const Bargraph1 = ({ data = defaultBarData }) => {
   const options = {
     responsive: true,
     plugins: {
-      ticks: {
-        font: {
-          size: 40,
-        },
-      },
       legend: {
         position: "top",
-
         labels: {
           color: paletteColors.navy,
-
-          font: {
-            size: 20,
-          },
+          font: { size: 20 },
         },
       },
       title: {
         display: true,
         text: titletxt,
-        position: "top",
         color: paletteColors.navy,
-
-        font: {
-          size: 45,
-          color: paletteColors.navy,
-        },
+        font: { size: 45 },
       },
     },
-    grouped: true,
-    offset: true,
-    barPercentage: 1,
     scales: {
       x: {
         grid: { display: false },
         ticks: {
           color: paletteColors.navy,
-          font: {
-            size: 25,
-          },
+          font: { size: 25 },
         },
       },
       y: {
         grid: { color: paletteColors.navy },
         ticks: {
           color: paletteColors.navy,
-
-          font: {
-            size: 25,
-          },
+          font: { size: 25 },
         },
       },
     },
   };
 
-  const data = barChartData;
+  const chartData = makeBarChartData(data);
 
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={chartData} />;
 };

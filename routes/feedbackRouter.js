@@ -67,4 +67,19 @@ feedbackRouter.route("/:userID/:lessonID").put(async (req, res) => {
   }
 });
 
+// DELETE feedback by its own Mongo _id
+feedbackRouter.delete("/id/:feedbackId", async (req, res) => {
+  try {
+    const deleted = await Feedback.findByIdAndDelete(req.params.feedbackId);
+    if (!deleted) {
+      return res.status(404).json({ error: "Feedback not found" });
+    }
+    res.json({ message: "Feedback deleted", deleted });
+  } catch (err) {
+    console.error("Error deleting feedback:", err);
+    res.status(500).json({ error: "Failed to delete feedback" });
+  }
+});
+
+
 module.exports = feedbackRouter;
