@@ -5,7 +5,7 @@ const FeedbackButtonProf = ({ courseId }) => {
   const navigate = useNavigate();
 
   const handleViewLessons = () => {
-    navigate("/lesson-list-prof", { state: { courseId } });
+    navigate(`/lesson-list-prof/${courseId}`);
   };
 
   return (
