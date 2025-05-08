@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import "../App.css";
 import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
-import { LessonList } from "./LessonList";
-
+import LessonList from "./LessonList";
 const LessonPage = () => {
   const navigate = useNavigate();
 
