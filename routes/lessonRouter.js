@@ -15,7 +15,9 @@ router.get("/", async (req, res) => {
 // GET a lesson by ID
 router.get("/:id", async (req, res) => {
   try {
-    const lesson = await Lesson.findById(req.params.id).populate("feedback");
+    const lesson = await Lesson.findById(req.params.id)
+      .populate("feedback")
+      .exec();
     if (!lesson) return res.status(404).json({ message: "Lesson not found" });
     res.json(lesson);
   } catch (error) {
@@ -39,10 +41,15 @@ router.post("/", async (req, res) => {
 // PUT update lesson by ID
 router.put("/:id", async (req, res) => {
   try {
-    const updatedLesson = await Lesson.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!updatedLesson) return res.status(404).json({ message: "Lesson not found" });
+    const updatedLesson = await Lesson.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!updatedLesson)
+      return res.status(404).json({ message: "Lesson not found" });
     res.json(updatedLesson);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -53,7 +60,8 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deletedLesson = await Lesson.findByIdAndDelete(req.params.id);
-    if (!deletedLesson) return res.status(404).json({ message: "Lesson not found" });
+    if (!deletedLesson)
+      return res.status(404).json({ message: "Lesson not found" });
     res.json({ message: "Lesson deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });

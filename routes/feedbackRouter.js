@@ -5,6 +5,7 @@ Description: Feedback Router for feedback model
 const express = require("express");
 const feedbackRouter = express.Router();
 const Feedback = require("../models/feedback");
+const Lesson = require("../models/lesson");
 
 // POST to give feedback on a specific lesson by a specific user in a specific class
 feedbackRouter
@@ -23,6 +24,21 @@ feedbackRouter
       });
 
       const savedFeedback = await newFeedback.save();
+
+      //now to update lesson
+      // Find the corresponding lesson and update the feedback array
+      const updatedLesson = await Lesson.findByIdAndUpdate(
+        lessonID,
+        { $push: { feedback: savedFeedback._id } }, // Push the new feedback's ObjectId to the feedback array
+        { new: true } // Return the updated lesson
+      ).populate("feedback"); // Optional: populate feedback to get full feedback details
+
+      if (!updatedLesson) {
+        return res.status(404).json({ error: "Lesson not found." });
+      }
+
+      //back to feedback
+
       res.status(201).json(savedFeedback);
     } catch (error) {
       console.error("Error giving feedback:", error);
