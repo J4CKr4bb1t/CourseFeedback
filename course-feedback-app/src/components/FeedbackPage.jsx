@@ -111,7 +111,7 @@ const FeedbackPage = () => {
             color: paletteColors.navy,
           }}
           // Navigate to lesson List
-          onClick={() => navigate("/lessons")}
+          onClick={() => navigate(`/lessons/${courseId}`)}
         >
           <i className="bi bi-arrow-left"></i>
         </button>
