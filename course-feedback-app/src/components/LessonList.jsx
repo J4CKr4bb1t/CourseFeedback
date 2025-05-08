@@ -11,22 +11,6 @@ export default function LessonList() {
   const [lessons, setLessons] = useState([]);
   const navigate = useNavigate();
 
-  const checkFeedback = async (lessonId) => {
-    try {
-      const response = await fetch(`/feedback/${lessonId}`);
-      if (response.ok) {
-        const feedbackData = await response.json();
-        // Here you can do something with the feedback, e.g., store it in state
-        console.log("Feedback for lesson:", feedbackData);
-        return feedbackData; // Return the feedback if needed
-      } else {
-        console.error("Failed to load feedback:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error checking feedback:", error);
-    }
-  };
-
   useEffect(() => {
     getClassById(courseId)
       .then((cls) => {
@@ -53,7 +37,7 @@ export default function LessonList() {
           <div className="col-md-2">
             <LessonButton
               lessonId={lesson._id}
-              feedback={checkFeedback}
+              feedback={lesson.feedback}
               courseId={courseId}
             />
           </div>
