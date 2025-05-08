@@ -1,43 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
-//default value for status
-let status = "unavailable";
-
-const LessonButton = ({ status, lessonId, feedback, courseId }) => {
+const LessonButton = ({ lessonId, feedback, courseId }) => {
   const navigate = useNavigate();
+  const [status, setStatus] = useState("unavailable");
 
   const handleEditFeedback = () => {
     navigate(`/feedback/${lessonId}`, {
-      state: { feedback: feedback || {}, isEditing: true },
+      state: { isEditing: true, courseId: courseId, lessonId: lessonId },
     });
-  };
-
-  const checkStatus = () => {
-    //get studentID from token
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      console.error("No token found.");
-      return;
-    }
-
-    let decoded;
-    try {
-      decoded = jwtDecode(token);
-    } catch (err) {
-      console.error("Invalid token:", err);
-      return;
-    }
-
-    const studentId = decoded._id;
-    //check if feedback contains any entries from the studentId
-    if (feedback === undefined) return "available";
-    feedback.forEach((entry) => {
-      if (entry.user === studentId) return "complete";
-    });
-    return "available";
   };
 
   const handleSubmitFeedback = () => {
@@ -48,14 +20,67 @@ const LessonButton = ({ status, lessonId, feedback, courseId }) => {
         isEditing: false,
         courseId: courseId,
         lessonId: lessonId,
-        feedback: feedback,
       },
     });
   };
 
-  console.log("feedback:", feedback);
+  const checkStatus = async (lessonID) => {
+    // Get studentID from token
+    const token = localStorage.getItem("token");
 
-  status = checkStatus();
+    if (!token) {
+      console.error("No token found.");
+      return "unavailable";
+    }
+
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+    } catch (err) {
+      console.error("Invalid token:", err);
+      return "unavailable";
+    }
+
+    const studentId = decoded._id;
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/feedback/${lessonID}`
+      );
+      if (!response.ok) {
+        console.error("Failed to fetch feedback:", response.statusText);
+        return "unavailable";
+      }
+
+      const feedback = await response.json();
+
+      if (!Array.isArray(feedback)) {
+        console.error("Unexpected feedback format.");
+        return "unavailable";
+      }
+
+      const hasFeedback = feedback.some((entry) => entry.user === studentId);
+      return hasFeedback ? "complete" : "available";
+    } catch (err) {
+      console.error("Error fetching feedback:", err);
+      return "unavailable";
+    }
+  };
+
+  useEffect(() => {
+    const getStatus = async () => {
+      if (lessonId) {
+        const result = await checkStatus(lessonId);
+        setStatus(result);
+      }
+    };
+    getStatus();
+  }, [lessonId]);
+
+  // console.log("feedback:", feedback);
+
+  // status = checkStatus(lessonId);
+  console.log("status", status);
 
   switch (status) {
     case "complete":

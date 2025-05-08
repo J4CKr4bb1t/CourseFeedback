@@ -10,23 +10,12 @@ const FeedbackPage = () => {
 
   const lessonId = location.state?.lessonId;
   const courseId = location.state?.courseId;
-  const feedback = location.state?.feedback;
 
   const isEditing = location.state?.isEditing;
-
-  const initialFeedback = location.state?.feedback || {};
 
   const [contentClarity, setContentClarity] = useState("");
   const [pace, setPace] = useState("");
   const [suggestions, setSuggestions] = useState("");
-
-  useEffect(() => {
-    if (isEditing) {
-      setContentClarity(initialFeedback.contentClarity || "");
-      setPace(initialFeedback.pace || "");
-      setSuggestions(initialFeedback.suggestions || "");
-    }
-  }, [isEditing, initialFeedback]);
 
   const handleSubmit = (e) => {
     //get studentID from token
