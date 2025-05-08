@@ -85,4 +85,36 @@ router.get("/all-Users", async (req, res) => {
   }
 });
 
+router.post("/update-credentials", async (req, res) => {
+  const { currentEmail, newEmail, newPassword } = req.body;
+
+  try {
+    //find the user by their current email
+    const user = await User.findOne({ email: currentEmail });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    //update the email if a new one is provided
+    if (newEmail) {
+      user.email = newEmail;
+    }
+
+    //update the password if a new one is provided
+    if (newPassword) {
+      await user.setPassword(newPassword);
+    }
+
+    //save the updated user
+    await user.save();
+
+    res.status(200).json({ message: "Credentials updated successfully." });
+  } catch (err) {
+    console.error("Error updating credentials:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 module.exports = router;
