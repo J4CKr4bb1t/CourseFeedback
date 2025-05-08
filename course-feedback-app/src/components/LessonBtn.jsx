@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 let status;
 
@@ -12,17 +13,48 @@ const LessonButton = ({ status, lessonId, feedback, courseId }) => {
     });
   };
 
+  const checkStatus = () => {
+    //get studentID from token
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+    } catch (err) {
+      console.error("Invalid token:", err);
+      return;
+    }
+
+    const studentId = decoded._id;
+    //check if feedback contains any entries from the studentId
+    if (feedback === undefined) return "available";
+    feedback.forEach((entry) => {
+      if (entry.user === studentId) return "complete";
+    });
+    return "available";
+  };
+
   const handleSubmitFeedback = () => {
     console.log("submit: ", courseId, lessonId);
 
     navigate(`/feedback/${lessonId}`, {
-      state: { isEditing: false, courseId: courseId, lessonId: lessonId },
+      state: {
+        isEditing: false,
+        courseId: courseId,
+        lessonId: lessonId,
+        feedback: feedback,
+      },
     });
   };
 
   console.log("feedback:", feedback);
 
-  status = "available";
+  status = checkStatus();
 
   switch (status) {
     case "complete":

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import "./FeedbackPage.css";
 import { paletteColors } from "./palette";
+import { jwtDecode } from "jwt-decode";
 
 const FeedbackPage = () => {
   const location = useLocation();
@@ -9,6 +10,7 @@ const FeedbackPage = () => {
 
   const lessonId = location.state?.lessonId;
   const courseId = location.state?.courseId;
+  const feedback = location.state?.feedback;
 
   const isEditing = location.state?.isEditing;
 
@@ -27,21 +29,75 @@ const FeedbackPage = () => {
   }, [isEditing, initialFeedback]);
 
   const handleSubmit = (e) => {
+    //get studentID from token
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+    } catch (err) {
+      console.error("Invalid token:", err);
+      return;
+    }
+
+    const studentId = decoded._id;
     e.preventDefault();
-    //TODO change from console log to DB post/put
-    console.log({
-      isEditing,
-      lessonId,
-      courseId,
+
+    //format data to be put/posted
+    const feedbackData = {
       contentClarity,
       pace,
       suggestions,
+    };
+
+    //TODO change from console log to DB post/put
+    const method = isEditing ? "PUT" : "POST";
+    const endpoint = `http://localhost:3000/feedback/${studentId}/${lessonId}`;
+
+    console.log({
+      studentId,
+      isEditing,
+      lessonId,
+      courseId,
+      feedbackData,
     });
-    alert(
-      isEditing
-        ? "Feedback updated successfully!"
-        : "Feedback submitted successfully!"
-    );
+
+    console.log("body: ", JSON.stringify(feedbackData));
+    //fetch to the endpoint, responsive to method
+    fetch(endpoint, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(feedbackData), //sending the actual data
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then((data) => {
+        alert(
+          isEditing
+            ? "Feedback updated successfully!"
+            : "Feedback submitted successfully!"
+        );
+        navigate(`/lessons/${courseId}`);
+      })
+      .catch((err) => {
+        console.error("Error submitting feedback:", err);
+        alert("There was a problem submitting your feedback.");
+      });
+
+    // alert(
+    //   isEditing
+    //     ? "Feedback updated successfully!"
+    //     : "Feedback submitted successfully!"
+    // );
     navigate(`/lessons/${courseId}`);
   };
 
