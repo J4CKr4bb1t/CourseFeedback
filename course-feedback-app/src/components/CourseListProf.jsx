@@ -19,13 +19,13 @@ export class CourseListProf extends Component {
   fetchCourses() {
     //get JWT token from local storage
     const token = localStorage.getItem("token");
-  
+
     //if no token is found, log error
     if (!token) {
       console.error("No token found.");
       return;
     }
-  
+
     let decoded;
     try {
       //get/decode token from user info
@@ -35,10 +35,10 @@ export class CourseListProf extends Component {
       console.error("Invalid token:", err);
       return;
     }
-  
+
     //get prof id from token
     const professorId = decoded._id;
-  
+
     //get all classes from db
     /*fetch("http://localhost:3000/class")
       .then((res) => res.json())
@@ -51,18 +51,15 @@ export class CourseListProf extends Component {
         //load their classes
         this.setState({ courses: filteredData });
       }) */
-      getAllClasses()
-        .then((all) =>
-          all.filter((course) => course.professors.includes(professorId))
-        )
-        .then((filtered) => this.setState({ courses: filtered }))
+    getAllClasses()
+      .then((all) =>
+        all.filter((course) => course.professors.includes(professorId))
+      )
+      .then((filtered) => this.setState({ courses: filtered }))
       .catch((error) => {
-      
         console.error("Error fetching courses:", error);
       });
   }
-  
-
 
   render() {
     return (

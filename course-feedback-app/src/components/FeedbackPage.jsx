@@ -4,11 +4,14 @@ import "./FeedbackPage.css";
 import { paletteColors } from "./palette";
 
 const FeedbackPage = () => {
-  const { lessonId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isEditing = location.state?.isEditing || false;
+  const lessonId = location.state?.lessonId;
+  const courseId = location.state?.courseId;
+
+  const isEditing = location.state?.isEditing;
+
   const initialFeedback = location.state?.feedback || {};
 
   const [contentClarity, setContentClarity] = useState("");
@@ -25,8 +28,11 @@ const FeedbackPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //TODO change from console log to DB post/put
     console.log({
+      isEditing,
       lessonId,
+      courseId,
       contentClarity,
       pace,
       suggestions,
@@ -36,7 +42,7 @@ const FeedbackPage = () => {
         ? "Feedback updated successfully!"
         : "Feedback submitted successfully!"
     );
-    navigate("/lessons");
+    navigate(`/lessons/${courseId}`);
   };
 
   return (

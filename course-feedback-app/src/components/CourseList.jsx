@@ -5,8 +5,9 @@ import { paletteColors } from "./palette";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "../App.css";
+import { getAllClasses } from "../services/CourseService";
 
-export class CourseList extends Component { 
+export class CourseList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,15 +34,11 @@ export class CourseList extends Component {
 
     const studentId = decoded._id;
 
-    fetch("http://localhost:3000/class")
-      .then((res) => res.json())
-      .then((data) => {
-        const filteredData = data.filter((course) =>
-          course.students.includes(studentId)
-        );
-
-        this.setState({ courses: filteredData });
-      })
+    getAllClasses()
+      .then((all) =>
+        all.filter((course) => course.students.includes(studentId))
+      )
+      .then((filtered) => this.setState({ courses: filtered }))
       .catch((error) => {
         console.error("Error fetching courses:", error);
       });
@@ -62,7 +59,7 @@ export class CourseList extends Component {
               <h3 className="cl">{course.prof}</h3>
             </div>
             <div className="col-md-2">
-              <FeedbackButton />
+              <FeedbackButton courseId={course._id} />
             </div>
           </div>
         ))}

@@ -36,17 +36,20 @@ function App() {
         <Route path="/course-list" element={<CoursePage />} />
 
         {/* Course lesson Page for Student */}
-        <Route path="/lessons" element={<LessonPage />} />
+        <Route path="/lessons/:courseId" element={<LessonPage />} />
 
         {/* Course feedback Page for Student */}
-        <Route path="/feedback" element={<TeacherFeedbackPage />} />
+        <Route path="/feedback/lessonId" element={<TeacherFeedbackPage />} />
         <Route path="/feedback/:lessonId" element={<FeedbackPage />} />
 
         {/* Course Course Page for Prof */}
         <Route path="/course-list-prof" element={<CoursePageProf />} />
 
         {/* Lesson List Page for PROF (with courseId) */}
-        <Route path="/lesson-list-prof/:courseId" element={<LessonListProf />}/>
+        <Route
+          path="/lesson-list-prof/:courseId"
+          element={<LessonListProf />}
+        />
 
         {/* Course feedback Page for Prof */}
         <Route
